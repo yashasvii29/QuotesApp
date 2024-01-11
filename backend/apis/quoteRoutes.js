@@ -1,5 +1,5 @@
 const express = require('express');
-const router = require('Router');
+const router = express.Router()
 const Quotes = require('../models/Quote');
 
 router.get('/allquotes', async(req,res)=>{

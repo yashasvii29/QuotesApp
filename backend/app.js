@@ -6,6 +6,8 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const seedDB = require('./seed');
+var cors = require('cors');
+const quoteRoutes = require('./apis/quoteRoutes');
 mongoose.connect('mongodb://127.0.0.1:27017/Quote')
 .then(()=>{
     console.log('DB Connected');
@@ -13,9 +15,13 @@ mongoose.connect('mongodb://127.0.0.1:27017/Quote')
 .catch((err)=>{
     console.log(err);
 })
-app.use(express.urlencoded({extended:true}));
-// connect() returns a promise so we will use .then and .catch and these both methods accepts a callback function(is the fun which passes as a argument inside he fun)
+app.use(express.urlencoded({extended:true})); // form data
+app.use(express.json());  // json data
 
+app.use(cors({origin:['http://localhost:3000']}));
+// origin m uss server ka path dete hai ki konse server se req le rhe hai
+// connect() returns a promise so we will use .then and .catch and these both methods accepts a callback function(is the fun which passes as a argument inside he fun)
+app.use(quoteRoutes);
 app.get('/hello',(req,res)=>{
     res.status(200).json({msg:"hello from quotesapp"});
 })

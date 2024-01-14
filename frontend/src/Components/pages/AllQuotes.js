@@ -22,7 +22,8 @@ const AllQuotes = () => {
     <h1 className='text-5xl font-bold text-center pb-4 pt-4'>All Quotes</h1>
       <ul>{
         quotes.map((quote,index)=>{
-            return <Quote key={index} author={quote.author} text={quote.text} />
+            return <Quote key={quote._id} author={quote.author} text={quote.text} id={quote._id}/>
+            {/* key m index bhi assign kr sakte hai and ._id bhi because dono hi unique hai */}
           })
       }
       </ul>

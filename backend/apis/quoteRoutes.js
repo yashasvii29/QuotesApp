@@ -15,18 +15,44 @@ router.get('/allquotes', async(req,res)=>{
 // error status code => 400
 // 2nd route=> to add a new quote 
 router.post('/addquotes',async(req,res)=>{
-    let {author,text} = req.body;
+    try{
+        let {author,text} = req.body;
     await Quotes.create({author,text});
     res.status(201).json({msg:"new quote created successfully"});
+    }
+    catch(e){
+        res.status(400).json({msg:'something went wrong'});
+    }
+    
 })
 
 // 3rd route=> to show a paricular quote
 router.get('/quotes/:id',async(req,res)=>{
-    let {id} =req.params;
-    const quote = await Quotes.findById(id);
-    res.status(200).json(quote);
+    try{
+        let {id} =req.params;
+        const quote = await Quotes.findById(id);
+        res.status(200).json(quote);
+    }
+    catch(e){
+        res.status(400).json({msg:'something went wrong'});
+    }
 })
 
+// 4th route=> show the form to edit the quote(particular quote)
+
+
+router.patch('/quotes/:id',async(req,res)=>{
+    try{
+        let {id}=req.params;
+        let {author,text} = Quotes.findByIdAndUpdate(id,{author,text})
+        res.status(201).json({msg:"quote updated successfully"});
+    }
+    catch(e){
+        res.status(400).json({msg:'something went wrong'});
+    }
+})  
 module.exports = router;
 // 201 is also a successfull code
 // documentation for status codes=> status code
+
+

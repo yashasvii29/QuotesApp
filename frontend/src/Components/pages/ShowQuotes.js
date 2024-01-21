@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams,useNavigate } from 'react-router-dom'
 import axios from 'axios';
-const ShowQuotes = () => {
+const ShowQuotes = (props) => {
    const params =  useParams();
+   const navigate =  useNavigate();
     // parameter ki value ko access krne ke liye we will use useParams() package
    let [quote,setQuote] =  useState({author:'',text:''});
 
@@ -16,6 +17,9 @@ const ShowQuotes = () => {
     // console.log(quote);
    
    }
+   const editQuoteHandler=()=>{
+    navigate(`/quotes/${params.id}/edit`);
+   }
 
    useEffect(()=>{
         fetchQuote();
@@ -23,8 +27,14 @@ const ShowQuotes = () => {
    
   return (
     <div>
-        <p>{quote.text}</p>
-        <h2>{quote.author}</h2>
+    <li className='mt-4 max-w-4xl m-auto p-4 bg-teal-300  flex   border-solid border-2 border-black'>
+    <span>
+        <p className='font-mono font-bold text-lg uppercase'>{quote.text}</p>
+        <h2 className='text-lg'>{quote.author}</h2>
+    </span>
+    </li>
+    <button onClick={()=>{editQuoteHandler()}} className=' mt-5 border-solid border-4 text-lg border-sky-500 px-1 text-white bg-orange-800 ml-80'>Edit</button>
+    <button className=' mt-5 border-solid border-4 text-lg border-sky-500 px-1 text-white bg-red-500 ml-4'>Delete</button>
     </div>
   )
 }

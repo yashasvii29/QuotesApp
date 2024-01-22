@@ -21,20 +21,20 @@ const EditQuotes = () => {
 
   }
 
-  // let [isValid , setIsvalid] =useState(true);
+  let [isValid , setIsvalid] =useState(true);
   function inputChangeHandlerAuthor(e){
    
     setInput({author:e.target.value});
-    // if(input.author.trim().length>0){
-    //   setIsvalid(true);
-    // }
+    if(input.author.trim().length>0){
+      setIsvalid(true);
+    }
   }
   function inputChangeHandlerText(e){
     
     setInput({text:e.target.value});
-    // if(input.text.trim().length>0){
-    //   setIsvalid=true;
-    // }
+    if(input.text.trim().length>0){
+      setIsvalid=true;
+    }
   }
 
 useEffect(()=>{
@@ -45,10 +45,12 @@ useEffect(()=>{
 const editquoteHandler = async(e)=>{
   
   e.preventDefault();
-  // if(input.author.trim().length===0 || input.text.trim().length===0){
-  //   setIsvalid(false);
-  //   return;
-  // }
+  if(input.author.trim().length===0 || input.text.trim().length===0){
+    setIsvalid(false);
+    return;
+  }
+
+  // input ki value find krne ke liye useRef() hook ka use krenge
   const author = authorInputRef.current.value;
   const text = quoteInputRef.current.value;
   // console.log(authorInputRef.current.value);
@@ -88,3 +90,4 @@ const editquoteHandler = async(e)=>{
 }
 
 export default EditQuotes
+

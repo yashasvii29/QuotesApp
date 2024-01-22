@@ -44,7 +44,8 @@ router.get('/quotes/:id',async(req,res)=>{
 router.patch('/quotes/:id',async(req,res)=>{
     try{
         let {id}=req.params;
-        await Quotes.findByIdAndUpdate(id,{author,text})
+        let {author,text}=req.body;
+        await Quotes.findByIdAndUpdate(id,{author,text});
         res.status(201).json({msg:"quote updated successfully"});
     }
     catch(e){

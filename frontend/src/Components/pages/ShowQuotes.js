@@ -20,12 +20,16 @@ const ShowQuotes = (props) => {
    const editQuoteHandler=()=>{
     navigate(`/quotes/${params.id}/edit`);
    }
-  //   function deleteQuoteHandler(){
-  //     axios.delete(`http://localhost:8080/quotes/${params.id}`);
-  //    navigate('/');
-  //  }
-  
-
+    async function deleteQuoteHandler(){
+      try{
+        let res = await axios.delete(`http://localhost:8080/quotes/${params.id}`);
+        console.log(res);
+        navigate('/');
+      }
+      catch(e){
+      console.log('cannot delete a quote');
+      } 
+   }
    useEffect(()=>{
    
         fetchQuote();
@@ -40,7 +44,7 @@ const ShowQuotes = (props) => {
     </span>
     </li>
     <button onClick={()=>{editQuoteHandler()}} className=' mt-5 border-solid border-4 text-lg border-sky-500 px-1 text-white bg-orange-800 ml-80'>Edit</button>
-    <button  className=' mt-5 border-solid border-4 text-lg border-sky-500 px-1 text-white bg-red-500 ml-4'>Delete</button>
+    <button  onClick={deleteQuoteHandler()}  className=' mt-5 border-solid border-4 text-lg border-sky-500 px-1 text-white bg-red-500 ml-4'>Delete</button>
     </div>
   )
 }

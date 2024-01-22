@@ -23,8 +23,8 @@ const NewQuotes = () => {
       catch(e){
         console.log('cannot create a new quote at this moment');
       }
-      // console.log(authorInputRef.current.value);
-      // console.log(quoteInputRef.current.value);
+      console.log(authorInputRef.current.value);
+      console.log(quoteInputRef.current.value);
  }
   return (
     <div>

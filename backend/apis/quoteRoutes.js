@@ -44,15 +44,27 @@ router.get('/quotes/:id',async(req,res)=>{
 router.patch('/quotes/:id',async(req,res)=>{
     try{
         let {id}=req.params;
-        let {author,text} = Quotes.findByIdAndUpdate(id,{author,text})
+        await Quotes.findByIdAndUpdate(id,{author,text})
         res.status(201).json({msg:"quote updated successfully"});
     }
     catch(e){
         res.status(400).json({msg:'something went wrong'});
     }
 })  
+
+
+router.delete('/quotes/:id',async(req,res)=>{
+    try{
+        let {id} =req.params;
+        await Quotes.findByIdAndDelete(id);
+        res.status(201).json({msg:"quote deleted successfully"});
+    }
+    catch(e){
+        res.status(400).json({msg:'something went wrong'});
+    }
+})
 module.exports = router;
 // 201 is also a successfull code
 // documentation for status codes=> status code
-
+ 
 

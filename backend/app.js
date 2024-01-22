@@ -30,7 +30,7 @@ app.get('/hello',(req,res)=>{
 // jab /hello pr req send krenge toh res m data send kr rhe hai in json format
 // 200 is a successful status
 
-//  seedDB();
+// seedDB();
 const port = process.env.PORT || 8080
 app.listen(port , ()=>{
     console.log(`server connected at port ${port}`);

@@ -9,19 +9,21 @@ const ShowQuotes = (props) => {
 
 
    async function fetchQuote(){
+    console.log(params.id);
    let res = await axios.get(`http://localhost:8080/quotes/${params.id}`);
    let {author,text} = res.data;
-    // console.log(author);
-    // console.log(text);
+   console.log(res);
+    console.log(author);
+    console.log(text);
     setQuote({author,text});
-    // console.log(quote);
-   
+    console.log(quote);
    }
    const editQuoteHandler=()=>{
     navigate(`/quotes/${params.id}/edit`);
    }
     async function deleteQuoteHandler(){
       try{
+
         let res = await axios.delete(`http://localhost:8080/quotes/${params.id}`);
         console.log(res);
         navigate('/');
@@ -31,7 +33,6 @@ const ShowQuotes = (props) => {
       } 
    }
    useEffect(()=>{
-   
         fetchQuote();
    },[])
    
@@ -44,11 +45,11 @@ const ShowQuotes = (props) => {
     </span>
     </li>
     <button onClick={()=>{editQuoteHandler()}} className=' mt-5 border-solid border-4 text-lg border-sky-500 px-1 text-white bg-orange-800 ml-80'>Edit</button>
-    <button  onClick={deleteQuoteHandler()}  className=' mt-5 border-solid border-4 text-lg border-sky-500 px-1 text-white bg-red-500 ml-4'>Delete</button>
+    <button onClick={()=>deleteQuoteHandler()} className=' mt-5 border-solid border-4 text-lg border-sky-500 px-1 text-white bg-red-500 ml-4'>Delete</button>
     </div>
   )
 }
 
 export default ShowQuotes
-
+// 
 // useEffect, useState , useRef , useParams and useNavigate inse complete application bana sakte hai..complex app bhi bana sakte hai

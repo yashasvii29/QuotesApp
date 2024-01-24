@@ -12,7 +12,8 @@ const Quote = (props) => {
                 <p className='font-mono font-bold text-lg uppercase'>{props.text}</p>
                 <h3 className=' text-lg'>{props.author}</h3>
             </span>
-            <button onClick={()=>{showQuoteHandler(props.id)}} className='border-solid border-4 text-lg border-sky-500 px-1 text-white bg-orange-800 ml-4'>View full Quote</button>
+            <button onClick={()=>{showQuoteHandler(props.id)}} className='border-solid border-4 text-lg border-sky-500 px-1 text-white bg-orange-800 ml-4'>
+            View full Quote</button>
         </li>
     </div>
   )

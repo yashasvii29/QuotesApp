@@ -31,6 +31,7 @@ router.get('/quotes/:id',async(req,res)=>{
     try{
         let {id} =req.params;
         const quote = await Quotes.findById(id);
+        // console.log(quote);
         res.status(200).json(quote);
     }
     catch(e){
